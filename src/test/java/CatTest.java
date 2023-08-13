@@ -10,12 +10,13 @@ import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
+    private Cat cat;
     @Mock
     private Feline feline;
 
     @Before
     public void initFeline() {
-        Feline feline = new Feline();
+        cat = new Cat(feline);
     }
 
     @Test
