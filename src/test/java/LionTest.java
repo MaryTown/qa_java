@@ -44,16 +44,16 @@ public class LionTest {
         boolean hasException = false;
         try {
             new Lion("Другое", feline);
-        } catch (Exception e) {
-            hasException = true;
+        } catch (Exception thrown) {
+            Assert.assertEquals("Используйте допустимые значения пола животного - самей или самка", thrown.getMessage());
         }
-        Assert.assertTrue(hasException);
     }
 
     @Test
     public void lionEatMeatTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> actualResult = lion.getFood();
         Assert.assertEquals(expectedResult, actualResult);
     }
